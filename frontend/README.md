@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+# Auth0 Authentication with Next.js/React and Node.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements authentication using Auth0, a Node.js backend with Express for validating tokens, and an email service to send authentication tokens to users upon login.
 
-## Available Scripts
+## Features
+- **Frontend**: Built with Next.js/React.js using Auth0 for authentication.
+- **Backend**: Express.js API that validates Auth0 tokens and sends an email to the authenticated user.
+- **Email Service**: Uses Nodemailer to send authentication tokens via email.
 
-In the project directory, you can run:
+---
+## Setup Instructions
 
-### `npm start`
+### Prerequisites
+- Node.js installed
+- Auth0 account set up
+- Gmail or another SMTP service for sending emails
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Clone the Repository
+```sh
+git clone https://github.com/yourusername/auth0-integration.git
+cd auth0-integration
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Setup Environment Variables
+Create a `.env` file in both the frontend and backend directories with the following variables:
 
-### `npm test`
+#### **Backend (`server/.env`):**
+```env
+PORT=5000
+AUTH0_AUDIENCE=your-auth0-audience
+AUTH0_DOMAIN=your-auth0-domain
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-email-password
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### **Frontend (`frontend/.env`):**
+```env
+REACT_APP_AUTH0_DOMAIN=your-auth0-domain
+REACT_APP_AUTH0_CLIENT_ID=your-auth0-client-id
+```
 
-### `npm run build`
+---
+## Backend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Install Dependencies
+```sh
+cd server
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Run the Server
+```sh
+npm start
+```
+The server will start on `http://localhost:5000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+## Frontend Setup
 
-### `npm run eject`
+### 1. Install Dependencies
+```sh
+cd frontend
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 2. Start the Frontend
+```sh
+npm start
+```
+The frontend will be available on `http://localhost:3000`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
+## Authentication Flow
+1. User logs in using Auth0.
+2. Auth0 returns an access token.
+3. The frontend sends this token to the backend.
+4. The backend validates the token and extracts user details.
+5. The backend sends an email to the authenticated user containing the token.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
+## Dependencies Used
+- **Frontend:** Next.js/React.js, @auth0/auth0-react, Axios
+- **Backend:** Express.js, express-oauth2-jwt-bearer, Nodemailer
+- **Email Service:** Gmail SMTP (can be replaced with SendGrid or other services)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
+## Bonus Features (Optional)
+- Logging authentication events.
+- UI enhancements for better user experience.
+- Using a database to store authentication logs.
 
-## Learn More
+---
+## Demo Video
+(Soon to be added)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For any issues, feel free to open an issue or contribute to the repository!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
