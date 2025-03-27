@@ -87,7 +87,7 @@ The frontend will be available on `http://localhost:3000`
 
 ---
 ## Demo Video
-(Soon to be added)
+
 
 For any issues, feel free to open an issue or contribute to the repository!
 
